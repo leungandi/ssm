@@ -27,7 +27,7 @@
 		<ehcache.version>2.6.9</ehcache.version>
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.7</java.version>
+		<java.version>1.8</java.version>
 
 		<!-- 项目属性 -->
 		<jdbc.driver.groupId>mysql</jdbc.driver.groupId>
