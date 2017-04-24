@@ -1,62 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:websocket="http://www.springframework.org/schema/websocket"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.1.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd
-        http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd ">    
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd ">
 
-    <!-- 自动扫描且只扫描@Controller -->
-	<context:component-scan base-package="com.szl.ssm" use-default-filters="false">	
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-		<context:include-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+	<!-- 自动扫描且只扫描@Controller -->
+	<context:component-scan base-package="com.szl.ssm"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.web.bind.annotation.ControllerAdvice" />
 	</context:component-scan>
- 
-    <!-- don't handle the static resource -->
-    <mvc:default-servlet-handler />
- 
-    <!-- if you use annotation you must configure following setting -->
-    <mvc:annotation-driven />
-    
-    <!-- 定义无需Controller的url<->view直接映射 -->
-    <mvc:view-controller path="/" view-name="redirect:/test/hello" /> 
-    
-     <!-- URL拦截器配置 -->
-     <mvc:interceptors>
-     	<mvc:interceptor>
-     		<!--  拦截所有路径的请求   包括子路径 -->
-     		<mvc:mapping path="/**"/> 
-     		<!-- 匹配不拦截的url -->
-     		<mvc:exclude-mapping path="/test/error*"/>
-     		<bean class="com.szl.ssm.interceptor.MyInterceptor"></bean>
-     	</mvc:interceptor>
-     </mvc:interceptors>
-    
-    <!-- 如果在配置前端控制器时拦截了所有的请求，不做特殊处理就会导致部分静态资源无法使用。如果是这种情况就可以使用下面的配置来访问静态资源文件 -->
-    <mvc:resources mapping="/images/**" location="/images/" />
-	<mvc:resources mapping="/css/**" location="/css/" />  
+
+	<!-- don't handle the static resource -->
+	<mvc:default-servlet-handler />
+
+	<!-- if you use annotation you must configure following setting -->
+	<mvc:annotation-driven />
+
+	<!-- 定义无需Controller的url<->view直接映射 -->
+	<mvc:view-controller path="/" view-name="redirect:/test/hello" />
+
+	<!-- URL拦截器配置 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<!-- 拦截所有路径的请求 包括子路径 -->
+			<mvc:mapping path="/**" />
+			<!-- 匹配不拦截的url -->
+			<mvc:exclude-mapping path="/test/error*" />
+			<bean class="com.szl.ssm.interceptor.MyInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<!-- 如果在配置前端控制器时拦截了所有的请求，不做特殊处理就会导致部分静态资源无法使用。如果是这种情况就可以使用下面的配置来访问静态资源文件 -->
+	<mvc:resources mapping="/images/**" location="/images/" />
+	<mvc:resources mapping="/css/**" location="/css/" />
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/imgdata/**" location="/imgdata/" />
-     
-     
-     
-    <!-- 视图名称解析器 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-            id="internalResourceViewResolver">
-        <!-- 前缀 -->
-        <property name="prefix" value="/WEB-INF/jsp/" />
-        <!-- 后缀 -->
-        <property name="suffix" value=".jsp" />
-    </bean>
-    
-    <!-- 上传配置-->
-    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-	    <property name="defaultEncoding" value="utf-8"></property>
-	    <property name="maxUploadSize" value="102400000"></property>
+
+
+
+	<!-- 视图名称解析器 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		id="internalResourceViewResolver">
+		<!-- 前缀 -->
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<!-- 后缀 -->
+		<property name="suffix" value=".jsp" />
 	</bean>
-	
-	
+
+	<!-- 上传配置 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="102400000"></property>
+	</bean>
+
+
 </beans>

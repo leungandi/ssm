@@ -39,6 +39,7 @@
 		<fastjson.version>1.2.2</fastjson.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
 		<ehcache.version>2.6.9</ehcache.version>
+		 <jedis.version>2.9.0</jedis.version>  
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
@@ -202,7 +203,6 @@
 			<artifactId>slf4j-api</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-
 		<dependency>
 			<groupId>ch.qos.logback</groupId>
 			<artifactId>logback-classic</artifactId>
@@ -285,7 +285,6 @@
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
 			<version>${fastjson.version}</version>
-
 		</dependency>
 		<dependency>
 			<groupId>net.sf.json-lib</groupId>
@@ -318,14 +317,12 @@
 			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 			<version>${assertj.version}</version>
 			<scope>test</scope>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -357,13 +354,11 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-
 		<dependency>
 			<groupId>jdom</groupId>
 			<artifactId>jdom</artifactId>
 			<version>1.1</version>
 		</dependency>
-
 		<!-- OTHER TOOLS end -->
 		<dependency>
 			<groupId>com.opensymphony</groupId>
@@ -386,6 +381,12 @@
 	      <artifactId>spring-websocket</artifactId>
 	      <version>${spring.version}</version>
 	    </dependency>
+	     <!-- Redis客户端 --> 
+        <dependency>  
+            <groupId>redis.clients</groupId>  
+            <artifactId>jedis</artifactId>  
+            <version>${jedis.version}</version>  
+        </dependency>  
 	</dependencies>
 	<build>
 		<plugins>
